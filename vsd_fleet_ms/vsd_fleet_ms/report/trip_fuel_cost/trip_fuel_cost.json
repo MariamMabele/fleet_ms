@@ -23,7 +23,10 @@
    "role": "System Manager"
   },
   {
-   "role": "All"
+   "role": "Fleet Manager"
+  },
+  {
+   "role": "Accounts User"
   }
  ]
 }
