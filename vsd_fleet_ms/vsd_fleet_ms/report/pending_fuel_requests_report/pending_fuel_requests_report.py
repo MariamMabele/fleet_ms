@@ -33,7 +33,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			fr.name AS name,
 			COALESCE(fr.transaction_date, t.date) AS transaction_date,
@@ -73,7 +73,7 @@ def get_data(filters):
 			), 0) AS requested_cost_usd
 		FROM `tabFuel Requests` fr
 		LEFT JOIN `tabTrips` t ON fr.reference_doctype = 'Trips' AND fr.reference_docname = t.name
-		WHERE fr.status != 'Fully Processed' {conditions}
+		WHERE fr.status != 'Fully Processed' """ + conditions + """
 		ORDER BY transaction_date DESC
 		""",
 		values,

@@ -31,7 +31,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			rp.name AS reference,
 			rp.request_date,
@@ -52,7 +52,7 @@ def get_data(filters):
 				WHERE parenttype = rp.reference_doctype AND parent = rp.reference_docname AND request_currency = 'TZS'
 			) AS requested_tzs
 		FROM `tabRequested Payment` rp
-		WHERE rp.payment_status != 'Paid' {conditions}
+		WHERE rp.payment_status != 'Paid' """ + conditions + """
 		ORDER BY rp.request_date DESC
 		""",
 		values,

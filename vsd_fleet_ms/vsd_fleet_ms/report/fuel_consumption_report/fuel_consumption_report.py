@@ -26,7 +26,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			t.truck_number,
 			COUNT(DISTINCT t.name) AS trip_count,
@@ -36,7 +36,7 @@ def get_data(filters):
 		FROM `tabTrips` t
 		INNER JOIN `tabFuel Requests Table` f
 			ON f.parent = t.name AND f.parentfield = 'fuel_request_history'
-		WHERE t.truck_number IS NOT NULL AND t.truck_number != '' {conditions}
+		WHERE t.truck_number IS NOT NULL AND t.truck_number != '' """ + conditions + """
 		GROUP BY t.truck_number
 		ORDER BY total_quantity DESC
 		""",

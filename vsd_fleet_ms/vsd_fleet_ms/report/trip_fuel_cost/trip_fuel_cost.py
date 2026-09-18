@@ -39,7 +39,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	rows = frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			T.name AS vehicle_trip, T.date, T.driver_name, T.truck_number, T.transporter_type,
 			T.trip_status, T.route,
@@ -47,7 +47,7 @@ def get_data(filters):
 			FL.disbursement_type, FL.supplier, FL.status, FL.approved_by, FL.approved_date
 		FROM `tabTrips` T
 		INNER JOIN `tabFuel Requests Table` FL ON FL.parent = T.name AND FL.parentfield = 'fuel_request_history'
-		WHERE 1 = 1 {conditions}
+		WHERE 1 = 1 """ + conditions + """
 		ORDER BY T.date DESC
 		""",
 		values,

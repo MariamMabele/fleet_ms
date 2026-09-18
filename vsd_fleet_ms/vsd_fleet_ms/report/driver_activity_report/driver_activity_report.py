@@ -28,7 +28,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			d.name AS driver,
 			d.full_name,
@@ -38,7 +38,7 @@ def get_data(filters):
 			(SELECT COUNT(*) FROM `tabTrips` WHERE assigned_driver = d.name AND trip_status = 'Completed') AS completed_trips,
 			(SELECT COUNT(*) FROM `tabTrips` WHERE assigned_driver = d.name AND trip_status = 'Pending') AS pending_trips
 		FROM `tabTruck Driver` d
-		WHERE 1 = 1 {conditions}
+		WHERE 1 = 1 """ + conditions + """
 		ORDER BY total_trips DESC
 		""",
 		values,

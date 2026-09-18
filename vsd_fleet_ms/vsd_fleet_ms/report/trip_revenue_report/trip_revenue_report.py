@@ -28,7 +28,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			t.name AS reference,
 			t.date,
@@ -40,7 +40,7 @@ def get_data(filters):
 		INNER JOIN `tabCargo Registration` cr ON cr.trip = t.name
 		INNER JOIN `tabCargo Detail` cd ON cd.parent = cr.name AND cd.invoice IS NOT NULL AND cd.invoice != ''
 		INNER JOIN `tabSales Invoice` si ON si.name = cd.invoice AND si.docstatus = 1
-		WHERE 1 = 1 {conditions}
+		WHERE 1 = 1 """ + conditions + """
 		GROUP BY t.name
 		ORDER BY t.date DESC
 		""",

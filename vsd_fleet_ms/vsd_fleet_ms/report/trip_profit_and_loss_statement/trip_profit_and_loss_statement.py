@@ -38,7 +38,7 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	rows = frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			`tabTrips`.name AS reference,
 			`tabTrips`.date AS posting_date,
@@ -80,7 +80,7 @@ def get_data(filters):
 				WHERE parenttype = 'Trips' AND parentfield = 'fuel_request_history' AND parent = `tabTrips`.name AND currency = 'TZS'
 			) AS fuel_expenses_tzs
 		FROM `tabTrips`
-		WHERE 1 = 1 {conditions}
+		WHERE 1 = 1 """ + conditions + """
 		""",
 		values,
 		as_dict=1,

@@ -16,7 +16,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Fleet & Drivers",
-   "link_count": 4,
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -561,19 +561,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Unpaid Invoices",
+   "label": "Trip Invoices",
    "link_count": 0,
-   "link_to": "Unpaid Invoices Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Overdue Invoices",
-   "link_count": 0,
-   "link_to": "Overdue Invoices Report",
+   "link_to": "Trip Invoices Report",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"

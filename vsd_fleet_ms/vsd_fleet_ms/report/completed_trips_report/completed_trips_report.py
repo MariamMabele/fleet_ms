@@ -28,10 +28,10 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT name, date, trip_completed_date, truck_number, truck_licence_plate, driver_name, route
 		FROM `tabTrips`
-		WHERE trip_status = 'Completed' {conditions}
+		WHERE trip_status = 'Completed' """ + conditions + """
 		ORDER BY trip_completed_date DESC
 		""",
 		values,

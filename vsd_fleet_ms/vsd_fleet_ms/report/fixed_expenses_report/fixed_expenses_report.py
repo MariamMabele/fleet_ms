@@ -25,14 +25,14 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			expense_type,
 			COUNT(*) AS request_count,
 			SUM(CASE WHEN request_currency = 'TZS' THEN request_amount ELSE 0 END) AS total_tzs,
 			SUM(CASE WHEN request_currency = 'USD' THEN request_amount ELSE 0 END) AS total_usd
 		FROM `tabRequested Fund Details`
-		WHERE expense_type IS NOT NULL AND expense_type != '' {conditions}
+		WHERE expense_type IS NOT NULL AND expense_type != '' """ + conditions + """
 		GROUP BY expense_type
 		ORDER BY total_tzs DESC
 		""",

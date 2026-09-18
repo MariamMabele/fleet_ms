@@ -28,12 +28,12 @@ def get_data(filters):
 	conditions, values = get_conditions(filters)
 
 	return frappe.db.sql(
-		f"""
+		"""
 		SELECT
 			name, truck_number, driver_name, route, date, trip_completed_date,
 			DATEDIFF(trip_completed_date, date) AS days_taken
 		FROM `tabTrips`
-		WHERE trip_status = 'Completed' AND date IS NOT NULL AND trip_completed_date IS NOT NULL {conditions}
+		WHERE trip_status = 'Completed' AND date IS NOT NULL AND trip_completed_date IS NOT NULL """ + conditions + """
 		ORDER BY days_taken DESC
 		""",
 		values,
